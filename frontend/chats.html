@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chats</title>
+    <link rel="stylesheet" href="./css/chats.css">
+    <script src="./scripts/chats.js" defer></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <span class="page-name">
+            Chats
+        </span>
+
+        <div class="header-menu">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                 class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                <a href="dashboard.html" class="link-homepage" id="link-homepage">
+                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                </a>
+            </svg>
+
+            <img class="profile-icon" id="profile-icon" src="" alt="user icon">
+
+            <span class="user-name" id="user-name">
+
+            </span>
+        </div>
+
+    </header>
+    <div class="main-container">
+
+        <div class="chats-list-container">
+            <button class="button create-chat-button" onclick="openPopup(this)">Add new chat</button>
+            <ul class="chats-list">
+                <!--<li class="chats-list-item">
+                    Work
+                </li>
+                <li class="chats-list-item active-chats-list-item">
+                    Education
+                </li>
+                <li class="chats-list-item">
+                    Entertainment
+                </li>-->
+            </ul>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-name">Education</div>
+            <div class="chat-body">
+                <ul class="chat-messages-list">
+                    <li class="other-user-message">
+                        <span class="message-text">
+                            Я дуже люблю Крука
+                        </span>
+                        <span class="message-sender">
+                            maxnevermore
+                        </span>
+                    </li>
+                    <li class="login-user-message">
+                        <span class="message-text">
+                            Я дуже люблю Грицай
+                        </span>
+                        <span class="message-sender">
+                            truba
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <form class="chat-tools-container">
+                <input type="text" class="chat-message-field">
+                <button class="button send-message-button" type="submit">Send</button>
+            </form>
+        </div>
+        <div class="chat-users-list">
+            <button class="button add-user-button" onclick="openPopup(this)">Add new user</button>
+            <ul class="users-list">
+                <!--<li class="users-list-item">
+                    maxnevermore
+                </li>
+                <li class="users-list-item">
+                    vanokalo
+                </li>
+                <li class="users-list-item">
+                    truba
+                </li>-->
+            </ul>
+        </div>
+    </div>
+    <div class="popup create-chat-popup">
+        <div class="popup-body">
+            <div class="popup-content">
+                <header>
+                    <span>
+                        Add new chat
+                    </span>
+                    <button class="create-chat-exitbutton" onclick="exitPopup(this)">
+                            
+                    </button>
+                </header>
+                <aside>
+                    <div>
+                        <span>Chat name:</span>
+                        <input type="text" id="chat-name-field">
+                    </div>
+                    <div>
+                        <span>Add user:</span>
+                        <div>
+                            <select class="existing-users-list">
+                                <option class="existing-user-item"></option>
+                            </select>
+                            <button onclick="addUserForCreatingChat()">Add</button>
+                        </div>
+                    </div>
+                </aside>
+                <footer>
+                    <button onclick="confirmCreatingChat()">Create</button>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup add-user-popup">
+        <div class="popup-body">
+            <div class="popup-content">
+                <header>
+                    <span>
+                        Add user to chat
+                    </span>
+                    <button class="add-user-exitbutton" onclick="exitPopup(this)"></button>
+                </header>
+                <aside>
+                    <div>
+                        <span>Users:</span>
+                        <div>
+                            <select class="notexisting-users-list">
+                                <option class="notexisting-user-item"></option>
+                            </select>
+                        </div>
+                    </div>
+                </aside>
+                <footer>
+                    <button onclick="confirmAddingUserToChat()">Add</button>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

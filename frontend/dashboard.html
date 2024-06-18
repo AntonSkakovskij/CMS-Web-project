@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="This website helps to track student progress">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CMS</title>
+
+    <meta name="theme-color" content="#8529FF">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- <link rel="apple-touch-icon" href="./icons/192x192.png"> -->
+    <link href="css/dashboard.css" rel="stylesheet">
+    <script src="scripts/dashboard.js" defer></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <!--<link href="./PWA/manifest.json" rel="manifest">-->
+</head>
+<body>
+    <header class="main-header" >
+        <h1 class="site-name">CMS</h1>
+        <div class="header-menu">
+            <div class="notification-menu">
+                <!--кнопка-->
+                <button class="profile-notification-button" name="notificationbutton">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="Black" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+                    </svg>
+                </button>
+                <!--випадне меню-->
+                <div class="notification-container">
+                    <ul class="notification">
+
+                    </ul>
+                    <div class="notification-tasks-container">
+                        <span>TODO:</span>
+                        <ul class="tasks-notification-list">
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <img class="profile-icon" id="profile-icon" src="" alt="user icon">
+            <div class="profile">
+                <span class="user-name" id="user-name"></span>
+                <div class="profile-menu">
+                    <ul>
+                        <li class="profile-menu-item">
+                            <button onclick="logoutSender()">Log Out</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main-container">
+        <nav class="navigation">
+            <ul class="navigation-list">
+                <li class="navigation-item">
+                    <a  id="chatsLink" href="chats.html" >Chats</a>
+                </li>
+                <li class="navigation-item">
+                    <a  href="#" >Student</a>
+                </li>
+                <li class="navigation-item">
+                    <a id="tasksLink" href="tasks.html">Tasks</a>
+                </li>
+            </ul>
+        </nav>
+        <section class="main-post">
+            <h2 class="main-post-name">Students</h2>
+            <button onclick="openStudentPopup('Add student')" class="button small-button add-student-button" name="add new student">
+                <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                </svg>
+            </button>
+            <div class="table-container">
+                <table class="student-table">
+                    <thead>
+                        <tr>
+                            <td>
+                                <input type="checkbox" >
+                            </td>
+                            <td>Group</td>
+                            <td>Name</td>
+                            <td>Gender</td>
+                            <td>Birthday</td>
+                            <td>Status</td>
+                            <td>Options</td>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="table-navigation">
+                    <ul class="table-navigation-buttons">
+                        <li>
+                            <button class="button small-button" name="previous table page">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                                    <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753"/>
+                                </svg>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="button small-button" name="next table page">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-caret-right" viewBox="0 0 16 16">
+                                    <path d="M6 12.796V3.204L11.481 8zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753"/>
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="popup delete-student-message">
+        <div class="popup-body">
+            <div class="popup-content">
+                <header>
+                    <h2>
+                        Warning
+                    </h2>
+                    <button onclick="exitDeleteMessagePopup()" class="button small-button exit-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                        </svg>
+                    </button>
+                </header>
+                <aside>
+                    <p>
+                        Are you sure you want to delete user <span class="fullname-to-delete"></span>?
+                    <p>
+                </aside>
+                <footer>
+                    <button onclick="confirmDeletingStudent()" class="button confirm-button">
+                        Ok
+                    </button>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <div class="popup edit-add-student-message">
+        <div class="popup-body">
+            <div class="popup-content">
+                    <header>
+                        <h2>
+                            <span id="modalTitle"></span>
+                        </h2>
+                        <button onclick="exitStudentPopup()" class="button small-button exit-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                            </svg>
+                        </button>
+                    </header>
+                    <aside>
+                        <div class="popup-content-message">
+                            <div class="student-feature-names">
+                                <span>
+                                    Group
+                                </span>
+                                    <span>
+                                    First name
+                                </span>
+                                    <span>
+                                    Last name
+                                </span>
+                                    <span>
+                                    Gender
+                                </span>
+                                <span>
+                                    Birthday
+                                </span>
+                            </div>
+                            <div class="student-feature-inputs">
+
+                                <select class="student-feature group" name="group">
+                                    <option value="-">-</option>
+                                    <option value="PZ-21">PZ-21</option>
+                                    <option value="PZ-22">PZ-22</option>
+                                    <option value="PZ-23">PZ-23</option>
+                                    <option value="PZ-24">PZ-24</option>
+                                    <option value="PZ-25">PZ-25</option>
+                                    <option value="PZ-26">PZ-26</option>
+                                    <option value="PZ-27">PZ-27</option>
+                                </select>
+                                <input class="student-feature firstName" type="text">
+                                <input class="student-feature lastName" type="text">
+
+                                <select class="student-feature gender" name="gender">
+                                    <option value="-">-</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <input class="student-feature birthday" type="date" value="">
+                            </div>
+
+                        </div>
+                        <span class="popup-message-error"></span>
+                    </aside>
+                    <footer>
+                        <button onclick="confirmStudentAction(event)"  id="confirmButton" class="button confirm-button">
+                        Ok
+                        </button>
+                    </footer>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,361 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    list-style: none;
+    color: black;
+}
+
+/*------------*/
+/*---КНОПКИ---*/
+/*------------*/
+
+.button {
+    background-color: #ff5cef;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+.button:hover {
+    background-color: #ff8cf0;
+}
+
+.button:active {
+    background-color: #d567c5;
+}
+
+.send-message-button {
+    margin-left: 10px;
+}
+
+.add-chat-button,
+.add-user-button {
+    width: 100%;
+}
+
+/*------------*/
+/*HEADER*/
+/*------------*/
+
+.main-header {
+    background-color: deeppink;
+    align-items: center;
+    padding: 15px 30px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    margin-bottom: 60px;
+}
+
+.profile-icon {
+    width: 70px;
+    height: 70px;
+}
+
+.link-homepage {
+    text-decoration: none;
+    color: black;
+}
+
+.link-homepage svg {
+    fill: black;
+    /* Зміна кольору SVG */
+}
+
+.page-name {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.header-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-name {
+    font-size: 25px;
+}
+
+/*------------*/
+/*ТІЛО СТОРІНКИ*/
+/*------------*/
+.main-container {
+    display: flex;
+    margin: 0 5%;
+    gap: 20px;
+    height: 550px;
+}
+
+.chats-list-container,
+.chat-container,
+.chat-users-list {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 20px;
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chats-list-container {
+    width: 25%;
+}
+
+.chat-container {
+    width: 50%;
+    justify-content: end;
+    gap: 10px;
+}
+
+.chat-users-list {
+    width: 25%;
+}
+
+.chat-container,
+.chat-users-list {
+    opacity: 0;
+    visibility: hidden
+}
+
+
+/*------------*/
+/*ЧАТ*/
+/*------------*/
+
+.chat-name {
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+}
+
+.chat-body {
+    background: #ededed;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.chat-tools-container {
+    display: flex;
+    align-items: center;
+}
+
+.chat-message-field {
+    height: 40px;
+    border-radius: 8px;
+    padding: 0 10px;
+    font-size: 18px;
+    flex-grow: 1;
+}
+
+.chat-messages-list {
+    height: 415.6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: auto;
+}
+
+
+
+/*------------*/
+/*ПОВІДОМЛЕННЯ*/
+/*------------*/
+
+/*стилі для контейнера повідомлення*/
+.login-user-message,
+.other-user-message {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    background: white;
+    padding: 10px;
+    width: 45%;
+    gap: 3px;
+}
+
+/*розміщення повідомлення згідно до юзера*/
+.login-user-message {
+    align-self: end;
+    border-bottom-right-radius: 0;
+}
+
+.other-user-message {
+    align-self: start;
+    border-bottom-left-radius: 0;
+}
+
+
+/*вміст повідомлення*/
+
+.message-time {
+    font-size: 12px;
+    color: #5f7298;
+    align-self: end;
+}
+
+.message-text {
+    font-size: 18px;
+}
+
+.message-sender {
+    font-size: 14px;
+    color: #5f7298;
+    align-self: end;
+}
+
+/*------------*/
+/*СПИСОК ЧАТІВ*/
+/*------------*/
+.chats-list {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.chats-list-item {
+    border-radius: 8px;
+    border: 1px black solid;
+    padding: 15px 30px;
+    font-size: 20px;
+}
+
+.chats-list-item:hover {
+    background-color: #f6f6f6;
+}
+
+.active-chats-list-item {
+    background: #ffb3f0;
+}
+
+
+/*------------*/
+/*СПИСОК КОРИСТУВАЧІВ*/
+/*------------*/
+.users-list {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.users-list-item {
+    border-radius: 10px;
+    background: #ededed;
+    padding: 8px 16px;
+    display: flex;
+    flex-grow: 1;
+}
+
+
+/* попап вікна */
+
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.popup-body {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 10px;
+}
+
+.popup-content {
+    background-color: #fff;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.popup-content aside {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 40px 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+}
+
+
+.popup-content header {
+    display: flex;
+    background-color: deeppink;
+    justify-content: space-between;
+    padding: 5px 10px;
+    align-items: center;
+}
+
+.popup-content header button {
+    width: 25px;
+    height: 25px;
+    border-radius: 8px;
+    background-color: red;
+}
+
+.popup-content aside select,
+.popup-content aside input {
+    border-radius: 8px;
+    height: 30px;
+    width: 70%;
+    flex-grow: 1;
+}
+
+
+.popup-content footer button,
+.popup-content aside button {
+
+    background-color: #ff5cef;
+    border-radius: 8px;
+    border: 0px;
+    width: 80px;
+    height: 30px;
+}
+
+.popup-content footer button:hover,
+.popup-content aside button:hover {
+    background-color: #ff8cf0;
+}
+
+.popup-content footer button:active,
+.popup-content aside button:active {
+    background-color: #d567c5;
+}
+
+.popup-content footer {
+    display: flex;
+    padding: 10px 10px;
+    gap: 15px;
+    justify-content: end;
+}
+
+.add-user-popup,
+.create-chat-popup {
+    opacity: 0;
+    visibility: hidden;
+}
